@@ -1,0 +1,19 @@
+/**
+* Initialize
+**/
+
+.popupmenu__contents {
+    .popupmenu__volume-slider {
+            &::-webkit-slider-runnable-track {
+                background-color: $popupSliderColor;
+            }
+
+            &::-moz-range-track {
+                background-color: $popupSliderColor;
+            }
+
+            &::-ms-fill-lower {
+                background-color: $popupSliderColor;
+            }
+        }
+}

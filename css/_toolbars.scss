@@ -1,0 +1,199 @@
+/**
+ * Round badge.
+ */
+.badge-round {
+    background-color: $toolbarBadgeBackground;
+    border-radius: 50%;
+    box-sizing: border-box;
+    color: $toolbarBadgeColor;
+    // Do not inherit the font-family from the toolbar button, because it's an
+    // icon style.
+    font-family: $baseFontFamily;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 13px;
+    min-width: 13px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+/**
+ * TODO: when the old filmstrip has been removed, remove the "new-" prefix.
+ */
+.new-toolbox {
+    bottom: calc((#{$newToolbarSize} * 2) * -1);
+    left: 0;
+    position: absolute;
+    right: 0;
+    transition: bottom .3s ease-in;
+    width: 100%;
+    pointer-events: none;
+    z-index: $toolbarZ + 2;
+
+    &.visible {
+        bottom: 0;
+    }
+
+    &.no-buttons {
+        display: none;
+    }
+}
+
+.toolbox-content {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: $toolbarZ;
+    pointer-events: none;
+
+    .button-group-center,
+    .button-group-left,
+    .button-group-right {
+        display: flex;
+        width: 33%;
+    }
+
+    .button-group-center {
+        justify-content: center;
+    }
+
+    .button-group-right {
+        justify-content: flex-end;
+    }
+
+    .toolbox-button-wth-dialog {
+        display: inline-block;
+    }
+}
+
+.toolbar-button-with-badge {
+    display: inline-block;
+    position: relative;
+
+    .badge-round {
+        bottom: -5px;
+        font-size: 12px;
+        line-height: 20px;
+        min-width: 20px;
+        pointer-events: none;
+        position: absolute;
+        right: -5px;
+    }
+}
+
+.toolbox-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 100%;
+    pointer-events: all;
+    border-radius: 6px;
+
+    .toolbox-content-items {
+        @include ltr;
+    }
+}
+
+.toolbox-content-wrapper::after {
+    content: '';
+    background: $newToolbarBackgroundColor;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.beta-tag {
+    background: #36383C;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 12px;
+    margin-left: 8px;
+    padding: 0 4px;
+    text-transform: uppercase;
+}
+
+.overflow-menu-hr {
+    border-top: 1px solid #4C4D50;
+    border-bottom: 0;
+    margin: 8px 0;
+}
+
+.hangup-button {
+    background-color: $hangupColor;
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background-color: $hangupHoverColor;
+        }
+    }
+
+    svg {
+        fill: #fff;
+    }
+}
+
+.profile-button-avatar {
+    align-items: center;
+}
+
+/**
+ * START of fade in animation for main toolbar
+ */
+.fadeIn {
+    opacity: 1;
+
+    @include transition(all .3s ease-in);
+}
+
+.fadeOut {
+    opacity: 0;
+
+    @include transition(all .3s ease-out);
+}
+
+/**
+ * Audio and video buttons do not have toggled state.
+ */
+.audio-preview,
+.video-preview {
+    .toolbox-icon.toggled {
+        background: none;
+
+        &:hover {
+            background: $newToolbarButtonHoverColor;
+        }
+    }
+
+}
+
+/**
+ * On small mobile devices make the toolbar full width and pad the invite prompt.
+ */
+.toolbox-content-mobile {
+    @media (max-width: 500px) {
+        margin-bottom: 0;
+
+        .toolbox-content-wrapper {
+            width: 100%;
+        }
+
+        .toolbox-content-items {
+            @include ltr;
+            border-radius: 0;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 8px 0;
+            width: 100%;
+        }
+
+        .invite-more-container {
+            margin: 0 16px 8px;
+        }
+
+        .invite-more-container.elevated {
+            margin-bottom: 52px;
+        }
+    }
+}
